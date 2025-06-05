@@ -39,9 +39,19 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
             ]
         }).populate(
         'fromUserId', 
-        USER_SAFE_DATA);;
+        USER_SAFE_DATA)
+        .populate(
+            'toUserId',
+            USER_SAFE_DATA
+        );
         
-        res.send(requests)
+        const data = requests.map(row => {
+            if(row.fromUserId._id.equals(loggedInUser._id)){
+            return row.toUserId
+        }
+        return row.fromUserId})
+
+        res.send(data)
 
     }
     catch (err){

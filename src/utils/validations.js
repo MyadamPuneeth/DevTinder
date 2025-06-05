@@ -27,9 +27,10 @@ function ValidateLogin(req) {
 const validateEditProfile = (req) => {
     const data = req.body;
     const ALLOWED_UPDATES = [
+        "firstName",
+        "lastName",
         "age",
         "gender",
-        "skills",
         "about",
         "photoUrl"
     ]

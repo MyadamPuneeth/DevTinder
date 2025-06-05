@@ -32,7 +32,7 @@ profileRouter.patch("/profile/edit", userAuth, async (req,res) => {
         });
     }
     catch (err){
-        res.status(400).send("Bayya problem "+err)
+        res.status(400).send("Bayya problem "+ err)
     }
 });
 
