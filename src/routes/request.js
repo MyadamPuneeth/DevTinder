@@ -13,11 +13,16 @@ requestRouter.post("/request/send/:status/:toUserId",
             const fromUserId = req.user._id;
             const toUserId = req.params.toUserId;
             const status = req.params.status;
+            const loggedInUser = req.user;
             
             const validStatus = ['intrested','ignored']
 
             if (!validStatus.includes(status)){
                 throw new Error("Not a valid status");
+            }
+
+            if (loggedInUser._id == toUserId){
+                throw new Error("Cannot send yourself a request")
             }
 
             const connectionRequest = new ConnectionRequest({
