@@ -3,6 +3,8 @@ const authRouter = express.Router();
 const {ValidateSignUp, ValidateLogin} = require("../utils/validations.js");
 const User = require('../models/user.js'); 
 const bcrypt = require('bcrypt')
+require('dotenv').config()
+
 
 authRouter.post("/signup", async (req, res) => {
     try {
